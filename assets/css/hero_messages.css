@@ -1,6 +1,19 @@
 .banner__graphics .messages-container .message {
   padding-inline: 0.5rem;
   padding-block: 0.1rem;
+
+  position: relative;
+}
+
+.msg-smoke {
+  background: url("../img/white_smoke_transparent.webp") center / contain
+    no-repeat;
+  position: absolute;
+  bottom: 95%;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 50%;
+  height: 100px;
 }
 
 .banner__graphics .messages-container .message p {
