@@ -242,3 +242,32 @@ export function setIsBlockingCat(input) {
 export function getIsBlockingCat() {
   return isBlocking;
 }
+
+export function createCharacterBoxes(messageText, messageParent) {
+  // Get the computed font size (returns a string like "16px")
+
+  const lines = messageParent
+    .querySelector(".hover-message")
+    .innerHTML.split(/<br\s*\/?>|\r?\n/) // Split by <br>, <br/>, <br />, or \n (\r\n support included)
+    .map((item) => item.trim()) // Remove leading/trailing whitespace from each item
+    .filter((item) => item.length > 0); // Ignore empty or whitespace-only lines
+
+  console.log("lines ===> ", lines);
+
+  messageParent.innerHTML = ""; // Clear existing content
+  messageText = messageText.trim(); // Trim whitespace from the message text
+
+  lines.forEach((line) => {
+    for (let i = 0; i < line.length; i++) {
+      console.log("creating char box for: ", line[i]);
+      const charBox = document.createElement("span");
+      charBox.classList.add("char-box");
+      charBox.textContent = line[i];
+      messageParent.appendChild(charBox);
+    }
+
+    if (line.length > 1) {
+      messageParent.innerHTML += "<br>"; // Add a line break after each line except the last one
+    }
+  });
+}

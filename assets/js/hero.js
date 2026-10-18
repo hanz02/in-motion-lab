@@ -14,7 +14,25 @@ import {
   toggleCatFloorBlur,
   setIsBlockingCat,
   getIsBlockingCat,
+  createCharacterBoxes,
 } from "./hero_messages.js";
+
+let messageIsClicked = false;
+
+function msgMouseEnterHandler(event) {
+  const message = event.currentTarget;
+  const catOffsets = getCatOffset(".light-cat");
+  messageHoverIn(message, catOffsets.catTopOffset);
+}
+
+function msgMouseLeaveHandler(event) {
+  const message = event.currentTarget;
+  messageHoverOut(message);
+}
+
+function log(message) {
+  document.querySelector(".log").innerHTML = message;
+}
 
 function getParentOffset(element, direction) {
   switch (direction) {
@@ -410,7 +428,9 @@ document.addEventListener("DOMContentLoaded", function () {
         //* collpase the welcome message using clip path
         welcome_curtain.classList.add("collapse");
 
-        document.querySelector("#welcome-container").classList.add("after-expand");
+        document
+          .querySelector("#welcome-container")
+          .classList.add("after-expand");
       },
       startAnimTime,
       function () {
@@ -498,12 +518,8 @@ document.addEventListener("DOMContentLoaded", function () {
 
         //* add a bit of delay for the animation to end before user can hover on the messages
         setTimeout(() => {
-          message.addEventListener("mouseenter", function () {
-            messageHoverIn(message, catTopOffset);
-          });
-          message.addEventListener("mouseleave", function () {
-            messageHoverOut(message);
-          });
+          message.addEventListener("mouseenter", msgMouseEnterHandler);
+          message.addEventListener("mouseleave", msgMouseLeaveHandler);
         }, 1000);
 
         setTimeout(() => {
@@ -541,6 +557,37 @@ document.addEventListener("DOMContentLoaded", function () {
             messageRightScroll(catHeightThreshold);
           });
       }
+    }, startAnimTime);
+
+    startAnimTime += 1000;
+    setTimeout(() => {
+      document.querySelectorAll(".message").forEach((message) => {
+        message.addEventListener("click", function () {
+          // if any messages on the screen is already clicked, do nothing. That means the user has already clicked on a message and we don't want to allow clicking on another message
+          if (messageIsClicked) return;
+
+          messageIsClicked = true;
+          document.querySelector(".banner").classList.add("light");
+          message.classList.add("clicked");
+          log(message.querySelector(".msg-inner").textContent);
+
+          console.log(
+            "message clicked: " +
+              message.querySelector(".msg-inner").textContent,
+          );
+
+          document.querySelectorAll(".message").forEach((msg) => {
+            console.log("Removed event listeners for message");
+            msg.removeEventListener("mouseenter", msgMouseEnterHandler);
+            msg.removeEventListener("mouseleave", msgMouseLeaveHandler);
+          });
+
+          createCharacterBoxes(
+            message.querySelector(".hover-message").textContent,
+            message.querySelector(".msg-inner"),
+          );
+        });
+      });
     }, startAnimTime);
 
     //* ============ end of animation sequences ===================
@@ -601,12 +648,16 @@ document.addEventListener("DOMContentLoaded", function () {
           // );
         }
 
+        const computedSize = window.getComputedStyle(element).fontSize;
+
         //* generate hovered inner text (with white background after hover on individual message)
         const messageText = element.innerHTML;
 
         const newElement = document.createElement("span");
         newElement.classList.add("hover-message");
         newElement.innerHTML = messageText;
+
+        newElement.style.fontSize = window.getComputedStyle(element).fontSize;
 
         element.append(newElement);
       });
