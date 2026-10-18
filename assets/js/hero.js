@@ -409,6 +409,8 @@ document.addEventListener("DOMContentLoaded", function () {
         document.querySelector("#closing-img").style.opacity = "1";
         //* collpase the welcome message using clip path
         welcome_curtain.classList.add("collapse");
+
+        document.querySelector("#welcome-container").classList.add("after-expand");
       },
       startAnimTime,
       function () {

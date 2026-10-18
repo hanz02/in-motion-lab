@@ -1,7 +1,7 @@
 :root {
-  --hero-white: #FAF7F3;
+  --hero-white: #faf7f3;
   --hero-dark: rgb(0, 26, 44);
-  --ease-out: cubic-bezier(.05, .52, .07, 1.02);
+  --ease-out: cubic-bezier(0.05, 0.52, 0.07, 1.02);
 }
 
 img {
@@ -23,6 +23,10 @@ a {
   border: 10px solid white;
 }
 
+.bd-test {
+  border: 10px solid red;
+}
+
 .button {
   width: auto;
   height: auto;
@@ -30,7 +34,6 @@ a {
   padding: 0.6rem 2rem;
   letter-spacing: 0.1rem;
   cursor: pointer;
-
 }
 
 /* PADDING */
@@ -218,7 +221,6 @@ a {
 .m-top-5 {
   margin-top: 9rem !important;
 }
-
 
 /* LETTER SPACING */
 .ls-1 {

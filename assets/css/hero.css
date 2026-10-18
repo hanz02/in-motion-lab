@@ -646,12 +646,22 @@ body {
   height: 0;
   margin-inline: auto;
   box-sizing: border-box;
+  overflow: hidden;
+
+  bottom: 50px;
 }
 
 .banner__graphics #welcome-container.expand {
   display: flex;
   justify-content: flex-end;
   align-items: flex-end;
+
+  overflow: visible;
+}
+
+.banner__graphics #welcome-container.after-expand {
+  bottom: 0px;
+  transition: bottom 2000ms var(--ease-out);
 }
 
 .banner__graphics #welcome-curtain {
@@ -780,7 +790,7 @@ body {
   align-items: center;
   z-index: 0;
   opacity: 0;
-  /* border: 2px solid red; */
+  border: 2px solid red;
 }
 
 .banner__graphics .floor {
