@@ -24,12 +24,14 @@
 }
 
 .banner.light #closing-img .dark-star {
-  bottom: 37%;
+  bottom: 30%;
   width: 30%;
   left: 50%;
   transform: translateX(-50%);
   opacity: 1;
   height: fit-content;
+
+  animation: circularMotion 2s cubic-bezier(0.13, 0.15, 0.05, 1.01) infinite;
 }
 
 .banner.light .light-cat {
@@ -65,4 +67,13 @@
 .banner.light .message .char-box {
   /* border: 1px solid var(--hero-dark); */
   box-sizing: border-box;
+}
+
+@keyframes circularMotion {
+  from {
+    transform: rotate(90deg) translateX(30px) rotate(-90deg);
+  }
+  to {
+    transform: rotate(-110deg) translateX(30px) rotate(110deg);
+  }
 }
