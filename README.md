@@ -4,7 +4,7 @@
 
 A personal UI/web-design playground built with **vanilla HTML, CSS, and JavaScript**. No frameworks, no build step. What began as a hobby project for practicing layout and animation has grown into a collection of design experiments, anchored by a fully hand-orchestrated animated hero section.
 
-**Live site:** [hanz02.github.io/crap-portfolio](https://hanz02.github.io/crap-portfolio/)
+**Live site:** [hanz02.github.io/crap-portfolio](https://hanz02.github.io/in-motion-lab/)
 
 ## Highlight: The Hero Section
 
