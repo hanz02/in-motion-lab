@@ -1,0 +1,79 @@
+.banner .hero-cat.clicked-dark-cat,
+.banner #closing-img .dark-star {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  width: 100%;
+  z-index: -1;
+  opacity: 0;
+}
+
+.banner.light .hero-cat.clicked-dark-cat {
+  opacity: 1;
+}
+
+.banner #closing-img {
+  border: red 1px solid;
+}
+
+.banner #closing-img .dark-star {
+  border: blue 1px solid;
+  object-fit: contain;
+  transition: bottom 0.5s ease-in-out;
+}
+
+.banner.light #closing-img .dark-star {
+  bottom: 30%;
+  width: 30%;
+  left: 50%;
+  transform: translateX(-50%);
+  opacity: 1;
+  height: fit-content;
+
+  animation: circularMotion 2s cubic-bezier(0.13, 0.15, 0.05, 1.01) infinite;
+}
+
+.banner.light .light-cat {
+  opacity: 0 !important;
+}
+
+.banner.light {
+  background: var(--hero-white);
+}
+
+.banner.light .message,
+.banner.light .message.active {
+  transition: none !important;
+  opacity: 1 !important;
+
+  transform: scale(1.05) !important;
+  border: red 3px solid !important;
+
+  transition:
+    transform 2000ms var(--ease-out) 0ms !important,
+    margin 2000ms var(--ease-out) 2000ms !important;
+}
+
+.banner.light .message * {
+  color: var(--hero-dark);
+}
+
+.banner.light .message:not(.clicked) {
+  opacity: 0 !important;
+  cursor: default !important;
+}
+
+.banner.light .message .char-box {
+  /* border: 1px solid var(--hero-dark); */
+  box-sizing: border-box;
+}
+
+@keyframes circularMotion {
+  from {
+    transform: rotate(90deg) translateX(30px) rotate(-90deg);
+  }
+  to {
+    transform: rotate(-110deg) translateX(30px) rotate(110deg);
+  }
+}
