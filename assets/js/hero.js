@@ -568,7 +568,6 @@ document.addEventListener("DOMContentLoaded", function () {
 
           messageIsClicked = true;
           document.querySelector(".banner").classList.add("light");
-          message.classList.add("clicked");
           log(message.querySelector(".msg-inner").textContent);
 
           console.log(
@@ -585,7 +584,31 @@ document.addEventListener("DOMContentLoaded", function () {
           createCharacterBoxes(
             message.querySelector(".hover-message").textContent,
             message.querySelector(".msg-inner"),
+            message,
           );
+
+          requestAnimationFrame(() => {
+            requestAnimationFrame(() => {
+              message.classList.add("clicked");
+              let timer = 0;
+              let counter = 20;
+
+              document.querySelectorAll(".char-box").forEach((char_box) => {
+                setTimeout(() => {
+                  char_box.classList.add("boxed");
+
+                  console.log(char_box.innerHTML);
+                }, timer);
+
+                if (counter > 10) {
+                  counter -= 1;
+                }
+                timer = timer + counter;
+
+                console.log(timer);
+              });
+            });
+          });
         });
       });
     }, startAnimTime);

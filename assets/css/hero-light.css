@@ -9,16 +9,22 @@
   opacity: 0;
 }
 
+.banner.light #the-moon,
+.banner.light .floor {
+  opacity: 0;
+  transition: opacity 0s !important;
+}
+
 .banner.light .hero-cat.clicked-dark-cat {
   opacity: 1;
 }
 
 .banner #closing-img {
-  border: red 1px solid;
+  /* border: red 1px solid; */
 }
 
 .banner #closing-img .dark-star {
-  border: blue 1px solid;
+  /* border: blue 1px solid; */
   object-fit: contain;
   transition: bottom 0.5s ease-in-out;
 }
@@ -48,11 +54,9 @@
   opacity: 1 !important;
 
   transform: scale(1.05) !important;
-  border: red 3px solid !important;
+  /* border: red 3px solid !important; */
 
-  transition:
-    transform 2000ms var(--ease-out) 0ms !important,
-    margin 2000ms var(--ease-out) 2000ms !important;
+  transition: transform 2000ms var(--ease-out) 0ms !important;
 }
 
 .banner.light .message * {
@@ -63,10 +67,40 @@
   opacity: 0 !important;
   cursor: default !important;
 }
+.banner.light .message.clicked {
+  writing-mode: vertical-rl; /* Text flows top-to-bottom, lines right-to-left */
+  line-height: 15px; /* Increases horizontal space between vertical lines */
+}
 
-.banner.light .message .char-box {
-  /* border: 1px solid var(--hero-dark); */
-  box-sizing: border-box;
+.banner.light .message .char-box::after {
+  display: inline-block;
+  content: "";
+  position: relative;
+  height: 0;
+  background-color: red;
+  width: 2px;
+  transition: height 2000ms var(--ease-out) 2000ms;
+}
+
+.banner.light .message.clicked .char-box::after {
+  height: 6px;
+}
+
+.banner.light .message.clicked .char-box .outer-box {
+  opacity: 0;
+}
+
+.banner.light .message.clicked .char-box.boxed .outer-box {
+  position: absolute;
+  width: 90%;
+  aspect-ratio: 1/1;
+  border: black 1px solid;
+  top: -12%;
+  right: 5%;
+
+  opacity: 1;
+
+  transition: opacity 5000ms var(--ease-out) 3000ms;
 }
 
 @keyframes circularMotion {

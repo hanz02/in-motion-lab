@@ -243,7 +243,7 @@ export function getIsBlockingCat() {
   return isBlocking;
 }
 
-export function createCharacterBoxes(messageText, messageParent) {
+export function createCharacterBoxes(messageText, messageParent, message) {
   // Get the computed font size (returns a string like "16px")
 
   const lines = messageParent
@@ -263,11 +263,15 @@ export function createCharacterBoxes(messageText, messageParent) {
       const charBox = document.createElement("span");
       charBox.classList.add("char-box");
       charBox.textContent = line[i];
+
+      const outerBox = document.createElement("span");
+      outerBox.classList.add("outer-box");
+      charBox.appendChild(outerBox);
+
       messageParent.appendChild(charBox);
     }
 
-    if (line.length > 1) {
-      messageParent.innerHTML += "<br>"; // Add a line break after each line except the last one
-    }
+    if (line.length > 1)
+      messageParent.appendChild(document.createElement("br"));
   });
 }
