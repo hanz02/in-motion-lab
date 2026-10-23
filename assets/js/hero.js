@@ -565,9 +565,15 @@ document.addEventListener("DOMContentLoaded", function () {
         message.addEventListener("click", function () {
           // if any messages on the screen is already clicked, do nothing. That means the user has already clicked on a message and we don't want to allow clicking on another message
           if (messageIsClicked) return;
+          
 
           messageIsClicked = true;
           document.querySelector(".banner").classList.add("light");
+
+          document.querySelectorAll(".scroll-button").forEach((scroll_button) => {
+            scroll_button.classList.remove("active");
+
+          });
           log(message.querySelector(".msg-inner").textContent);
 
           console.log(
@@ -596,15 +602,10 @@ document.addEventListener("DOMContentLoaded", function () {
               document.querySelectorAll(".char-box").forEach((char_box) => {
                 setTimeout(() => {
                   char_box.classList.add("boxed");
-
-                  console.log(char_box.innerHTML);
                 }, timer);
 
-                if (counter > 10) {
-                  counter -= 1;
-                }
+                if (counter > 10) counter -= 1;
                 timer = timer + counter;
-
                 console.log(timer);
               });
             });

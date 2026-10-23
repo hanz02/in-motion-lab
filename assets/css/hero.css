@@ -519,7 +519,7 @@ body {
   display: inline-block;
   position: relative;
   /* border: 1px solid var(--hero-white); */
-  font-family: "Shippori Mincho", serif;
+  font-family: "Noto Serif TC", serif;
   font-weight: normal;
   font-style: normal;
   top: 0px;
@@ -564,7 +564,7 @@ body {
 
 .banner__graphics .detach-wrapper::before {
   position: absolute;
-  font-family: "Shippori Mincho", serif;
+  font-family: "Noto Serif TC", serif;
 
   font-weight: normal;
   font-style: normal;
@@ -734,7 +734,7 @@ body {
 }
 
 .banner__graphics #welcome-msg h5 {
-  font-family: "Shippori Mincho", serif;
+  font-family: "Noto Serif TC", serif;
 
   font-weight: 900;
   font-style: normal;
@@ -909,7 +909,7 @@ body {
 
 .banner__graphics .messages-container .message * {
   letter-spacing: 0.3rem;
-  font-family: "Shippori Mincho", serif;
+  font-family: "Noto Serif TC", serif;
   font-weight: 400;
 
   padding: 0;

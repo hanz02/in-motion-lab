@@ -37,7 +37,7 @@
   opacity: 1;
   height: fit-content;
 
-  animation: circularMotion 2s cubic-bezier(0.13, 0.15, 0.05, 1.01) infinite;
+  animation: circularMotion 2s cubic-bezier(0.13, 0.15, 0.05, 1.01) forwards;
 }
 
 .banner.light .light-cat {
@@ -82,6 +82,16 @@
   transition: height 2000ms var(--ease-out) 2000ms;
 }
 
+.banner.light .message .char-box::after {
+  display: inline-block;
+  content: "";
+  position: relative;
+  height: 0;
+  background-color: red;
+  width: 2px;
+  transition: height 2000ms var(--ease-out) 2000ms;
+}
+
 .banner.light .message.clicked .char-box::after {
   height: 6px;
 }
@@ -102,6 +112,7 @@
 
   transition: opacity 5000ms var(--ease-out) 3000ms;
 }
+
 
 @keyframes circularMotion {
   from {

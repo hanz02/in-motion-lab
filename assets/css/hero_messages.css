@@ -43,8 +43,12 @@
   backface-visibility: hidden;
 
   letter-spacing: 0.3rem;
-  font-family: "Shippori Mincho", serif;
+  font-family: "Noto Serif TC", serif;
+  font-optical-sizing: auto;
   font-weight: 400;
+
+  font-feature-settings: "locl" on;
+  -webkit-font-feature-settings: "locl" on;
 
   clip-path: polygon(0 0, 100% 0, 100% 0, 0 0);
   transition: clip-path 750ms var(--ease-out) 0ms;
