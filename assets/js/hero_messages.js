@@ -264,11 +264,20 @@ export function createCharacterBoxes(messageText, messageParent, message) {
       charBox.classList.add("char-box");
       charBox.textContent = line[i];
 
+
       const outerBox = document.createElement("span");
       outerBox.classList.add("outer-box");
       charBox.appendChild(outerBox);
 
+      const innerBox = document.createElement("span");
+      innerBox.classList.add("inner-box");
+      charBox.appendChild(innerBox);
+
+      const marginBox = document.createElement("span");
+      marginBox.classList.add("margin-box");
       messageParent.appendChild(charBox);
+      messageParent.appendChild(marginBox);
+
     }
 
     if (line.length > 1)

@@ -574,12 +574,7 @@ document.addEventListener("DOMContentLoaded", function () {
             scroll_button.classList.remove("active");
 
           });
-          log(message.querySelector(".msg-inner").textContent);
 
-          console.log(
-            "message clicked: " +
-              message.querySelector(".msg-inner").textContent,
-          );
 
           document.querySelectorAll(".message").forEach((msg) => {
             console.log("Removed event listeners for message");
@@ -598,8 +593,16 @@ document.addEventListener("DOMContentLoaded", function () {
               message.classList.add("clicked");
               let timer = 0;
               let counter = 20;
+              let char_height = message.querySelector(".char-box").offsetHeight * 3 / 5;
+
+              log(message.querySelector(".msg-inner").textContent + "|" + message.querySelector(".char-box").offsetHeight + "px");
 
               document.querySelectorAll(".char-box").forEach((char_box) => {
+
+                setStyles(char_box.nextElementSibling, {
+                  height: char_height + "px"
+                })
+
                 setTimeout(() => {
                   char_box.classList.add("boxed");
                 }, timer);

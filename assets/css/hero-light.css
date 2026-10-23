@@ -72,47 +72,52 @@
   line-height: 15px; /* Increases horizontal space between vertical lines */
 }
 
-.banner.light .message .char-box::after {
+.banner.light .message .margin-box {
   display: inline-block;
   content: "";
   position: relative;
   height: 0;
-  background-color: red;
+  /* background-color: red; */
   width: 2px;
   transition: height 2000ms var(--ease-out) 2000ms;
 }
 
-.banner.light .message .char-box::after {
-  display: inline-block;
-  content: "";
-  position: relative;
-  height: 0;
-  background-color: red;
-  width: 2px;
-  transition: height 2000ms var(--ease-out) 2000ms;
+
+.banner.light .message.clicked .margin-box {
+  height: 12px;
 }
 
-.banner.light .message.clicked .char-box::after {
-  height: 6px;
-}
-
-.banner.light .message.clicked .char-box .outer-box {
+.banner.light .message.clicked .char-box .outer-box,
+.banner.light .message.clicked .char-box .inner-box {
   opacity: 0;
+
 }
 
-.banner.light .message.clicked .char-box.boxed .outer-box {
+.banner.light .message.clicked .char-box {
+  position: relative;
+  /* border: 1px solid blue; */
+}
+
+.banner.light .message.clicked .char-box.boxed .outer-box,
+.banner.light .message.clicked .char-box.boxed .inner-box {
   position: absolute;
-  width: 90%;
+  height: 150%;
   aspect-ratio: 1/1;
   border: black 1px solid;
-  top: -12%;
-  right: 5%;
+  top: 40%;
+  left: 50%;
 
-  opacity: 1;
+  transform: translate(-50%, -50%);
+
+  opacity: 0.6;
 
   transition: opacity 5000ms var(--ease-out) 3000ms;
 }
 
+.banner.light .message.clicked .char-box.boxed .inner-box {
+  height: 100%;
+  border: 1px dotted black;
+}
 
 @keyframes circularMotion {
   from {
