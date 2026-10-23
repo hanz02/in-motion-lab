@@ -590,12 +590,14 @@ document.addEventListener("DOMContentLoaded", function () {
 
           requestAnimationFrame(() => {
             requestAnimationFrame(() => {
+              const msg_height = message.querySelector(".msg-inner");
               message.classList.add("clicked");
               let timer = 0;
               let counter = 20;
+
               let char_height = message.querySelector(".char-box").offsetHeight * 3 / 5;
 
-              log(message.querySelector(".msg-inner").textContent + "|" + message.querySelector(".char-box").offsetHeight + "px");
+              log(message.querySelector(".msg-inner").textContent + "|" + message.querySelector(".char-box").offsetHeight + "px" + "<br>" + "Before height" + msg_height);
 
               document.querySelectorAll(".char-box").forEach((char_box) => {
 
@@ -606,6 +608,14 @@ document.addEventListener("DOMContentLoaded", function () {
                 setTimeout(() => {
                   char_box.classList.add("boxed");
                 }, timer);
+
+                // Listen for the transition to finish
+                char_box.addEventListener('transitionend', function handler(event) {
+                    console.log('Transition finished for property:', event.propertyName);
+
+                    // Optional: Remove the listener if you only want it to run once
+                    box.removeEventListener('transitionend', handler);
+                });
 
                 if (counter > 10) counter -= 1;
                 timer = timer + counter;

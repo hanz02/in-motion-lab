@@ -69,7 +69,7 @@
 }
 .banner.light .message.clicked {
   writing-mode: vertical-rl; /* Text flows top-to-bottom, lines right-to-left */
-  line-height: 15px; /* Increases horizontal space between vertical lines */
+  line-height: 2; /* Increases horizontal space between vertical lines */
 }
 
 .banner.light .message .margin-box {
@@ -77,7 +77,7 @@
   content: "";
   position: relative;
   height: 0;
-  /* background-color: red; */
+  background-color: red;
   width: 2px;
   transition: height 2000ms var(--ease-out) 2000ms;
 }
