@@ -82,15 +82,13 @@
   transition: height 2000ms var(--ease-out) 2000ms;
 }
 
-
-.banner.light .message.clicked .margin-box {
+/* .banner.light .message.clicked .margin-box {
   height: 12px;
-}
+} */
 
 .banner.light .message.clicked .char-box .outer-box,
 .banner.light .message.clicked .char-box .inner-box {
   opacity: 0;
-
 }
 
 .banner.light .message.clicked .char-box {

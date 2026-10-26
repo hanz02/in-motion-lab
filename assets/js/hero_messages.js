@@ -264,7 +264,6 @@ export function createCharacterBoxes(messageText, messageParent, message) {
       charBox.classList.add("char-box");
       charBox.textContent = line[i];
 
-
       const outerBox = document.createElement("span");
       outerBox.classList.add("outer-box");
       charBox.appendChild(outerBox);
@@ -277,10 +276,37 @@ export function createCharacterBoxes(messageText, messageParent, message) {
       marginBox.classList.add("margin-box");
       messageParent.appendChild(charBox);
       messageParent.appendChild(marginBox);
-
     }
 
     if (line.length > 1)
       messageParent.appendChild(document.createElement("br"));
   });
+}
+
+export function checkScreenCharacterBoxes(
+  hero_screen,
+  char_boxes,
+  margin_height,
+) {
+  if (!char_boxes.length) return;
+
+  const char_top_offset = char_boxes[0].getBoundingClientRect().top;
+
+  console.log("char_top_offset " + char_top_offset);
+  document.querySelector(".threshold-bar-x-clicked").style.top =
+    char_top_offset -
+    (char_boxes[0].offsetHeight * 1.05 * 1.05 - char_boxes[0].offsetHeight) +
+    "px";
+
+  const char_height = char_boxes[0].offsetHeight * 1.05 * 1.05;
+
+  console.log("char_boxes[0].offsetHeight " + char_height);
+
+  let i = 0;
+  let resultHeight = 0;
+  // for (; i < char_boxes.length; i++) {
+  //   resultHeight += char_height + margin_height;
+
+  //   hero_screen.getBoundingClientRect().bottom;
+  // }
 }

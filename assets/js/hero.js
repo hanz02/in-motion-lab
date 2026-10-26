@@ -15,6 +15,7 @@ import {
   setIsBlockingCat,
   getIsBlockingCat,
   createCharacterBoxes,
+  checkScreenCharacterBoxes,
 } from "./hero_messages.js";
 
 let messageIsClicked = false;
@@ -565,16 +566,18 @@ document.addEventListener("DOMContentLoaded", function () {
         message.addEventListener("click", function () {
           // if any messages on the screen is already clicked, do nothing. That means the user has already clicked on a message and we don't want to allow clicking on another message
           if (messageIsClicked) return;
-          
 
           messageIsClicked = true;
+
+          const hero_screen = document.querySelector(".hero");
+
           document.querySelector(".banner").classList.add("light");
 
-          document.querySelectorAll(".scroll-button").forEach((scroll_button) => {
-            scroll_button.classList.remove("active");
-
-          });
-
+          document
+            .querySelectorAll(".scroll-button")
+            .forEach((scroll_button) => {
+              scroll_button.classList.remove("active");
+            });
 
           document.querySelectorAll(".message").forEach((msg) => {
             console.log("Removed event listeners for message");
@@ -590,32 +593,50 @@ document.addEventListener("DOMContentLoaded", function () {
 
           requestAnimationFrame(() => {
             requestAnimationFrame(() => {
-              const msg_height = message.querySelector(".msg-inner");
+              //* check out of screen char boxes
+
+              const msg_height =
+                message.querySelector(".msg-inner").offsetHeight;
               message.classList.add("clicked");
               let timer = 0;
               let counter = 20;
 
-              let char_height = message.querySelector(".char-box").offsetHeight * 3 / 5;
+              let marginBox_height =
+                (message.querySelector(".char-box").offsetHeight * 3) / 5;
 
-              log(message.querySelector(".msg-inner").textContent + "|" + message.querySelector(".char-box").offsetHeight + "px" + "<br>" + "Before height" + msg_height);
+              checkScreenCharacterBoxes(
+                hero_screen,
+                document.querySelectorAll(".char-box"),
+                marginBox_height,
+              );
+
+              let afterHeight =
+                msg_height * 1.05 +
+                document.querySelectorAll(".char-box").length *
+                  (marginBox_height * 1.05);
 
               document.querySelectorAll(".char-box").forEach((char_box) => {
-
-                setStyles(char_box.nextElementSibling, {
-                  height: char_height + "px"
-                })
+                // setStyles(char_box.nextElementSibling, {
+                //   height: marginBox_height + "px",
+                // });
 
                 setTimeout(() => {
                   char_box.classList.add("boxed");
                 }, timer);
 
                 // Listen for the transition to finish
-                char_box.addEventListener('transitionend', function handler(event) {
-                    console.log('Transition finished for property:', event.propertyName);
+                char_box.addEventListener(
+                  "transitionend",
+                  function handler(event) {
+                    console.log(
+                      "Transition finished for property:",
+                      event.propertyName,
+                    );
 
                     // Optional: Remove the listener if you only want it to run once
-                    box.removeEventListener('transitionend', handler);
-                });
+                    char_box.removeEventListener("transitionend", handler);
+                  },
+                );
 
                 if (counter > 10) counter -= 1;
                 timer = timer + counter;
