@@ -290,17 +290,18 @@ export function checkScreenCharacterBoxes(
 ) {
   if (!char_boxes.length) return;
 
-  const char_top_offset = char_boxes[0].getBoundingClientRect().top;
+  const char_height = char_boxes[0].offsetHeight;
+  const scale = 1.05;
 
-  console.log("char_top_offset " + char_top_offset);
-  document.querySelector(".threshold-bar-x-clicked").style.top =
-    char_top_offset -
-    (char_boxes[0].offsetHeight * 1.05 * 1.05 - char_boxes[0].offsetHeight) +
-    "px";
+  const topChange =  (char_height * (1 - scale)) / 2;
+  const topChange2 =  ((char_height + Math.abs(topChange) * 2) * (1 - scale)) / 2;
 
-  const char_height = char_boxes[0].offsetHeight * 1.05 * 1.05;
 
   console.log("char_boxes[0].offsetHeight " + char_height);
+  console.log("Top change: ", topChange); 
+  console.log("Top change 2: ", topChange2); 
+
+
 
   let i = 0;
   let resultHeight = 0;

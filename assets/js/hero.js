@@ -564,27 +564,31 @@ document.addEventListener("DOMContentLoaded", function () {
     setTimeout(() => {
       document.querySelectorAll(".message").forEach((message) => {
         message.addEventListener("click", function () {
-          // if any messages on the screen is already clicked, do nothing. That means the user has already clicked on a message and we don't want to allow clicking on another message
+          //* if any messages on the screen is already clicked, do nothing. That means the user has already clicked on a message and we don't want to allow clicking on another message
           if (messageIsClicked) return;
-
           messageIsClicked = true;
 
+          //* get the big hero screen
           const hero_screen = document.querySelector(".hero");
-
+          
+          //* change the background from dark -> light
           document.querySelector(".banner").classList.add("light");
 
+          //* remove the left and right scroll button that appears on mobile screen
           document
             .querySelectorAll(".scroll-button")
             .forEach((scroll_button) => {
               scroll_button.classList.remove("active");
             });
-
+          
+          //* remove the hover effect on all messages  
           document.querySelectorAll(".message").forEach((msg) => {
             console.log("Removed event listeners for message");
             msg.removeEventListener("mouseenter", msgMouseEnterHandler);
             msg.removeEventListener("mouseleave", msgMouseLeaveHandler);
           });
 
+          //* create the boxes, inner box and outer box for  the clicked message each character
           createCharacterBoxes(
             message.querySelector(".hover-message").textContent,
             message.querySelector(".msg-inner"),
@@ -597,18 +601,29 @@ document.addEventListener("DOMContentLoaded", function () {
 
               const msg_height =
                 message.querySelector(".msg-inner").offsetHeight;
+
+              const charTop = message.querySelector(".char-box").offsetTop;
+
+              const topShift = (1.05 - 1) * (charTop - msg_height / 2);
+
               message.classList.add("clicked");
+
               let timer = 0;
               let counter = 20;
 
               let marginBox_height =
                 (message.querySelector(".char-box").offsetHeight * 3) / 5;
 
-              checkScreenCharacterBoxes(
-                hero_screen,
-                document.querySelectorAll(".char-box"),
-                marginBox_height,
-              );
+              // checkScreenCharacterBoxes(
+              //   hero_screen,
+              //   document.querySelectorAll(".char-box"),
+              //   marginBox_height,
+              // );
+
+              console.log("topShift: " + topShift)
+
+              document.querySelector(".threshold-bar-x-clicked").style.top = message.querySelectorAll(".char-box")[0].getBoundingClientRect().bottom + "px";
+
 
               let afterHeight =
                 msg_height * 1.05 +
@@ -616,9 +631,9 @@ document.addEventListener("DOMContentLoaded", function () {
                   (marginBox_height * 1.05);
 
               document.querySelectorAll(".char-box").forEach((char_box) => {
-                // setStyles(char_box.nextElementSibling, {
-                //   height: marginBox_height + "px",
-                // });
+                setStyles(char_box.nextElementSibling, {
+                  height: marginBox_height + "px",
+                });
 
                 setTimeout(() => {
                   char_box.classList.add("boxed");
